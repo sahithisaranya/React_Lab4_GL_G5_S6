@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "expenseDescription": "Bought Fridge",
+      "payeeName": "Sahithi",
+      "price": 15000,
+      "date": "2023-02-26",
+      "id": 1
+    },
+    {
+      "expenseDescription": "Paid Internet Bill",
+      "payeeName": "Suchi",
+      "price": 2000,
+      "date": "2023-02-15",
+      "id": 2
+    },
+    {
+      "expenseDescription": "Trip to Delhi",
+      "payeeName": "Suchi",
+      "price": 10000,
+      "date": "2023-01-20",
+      "id": 3
+    },
+    {
+      "expenseDescription": "Market",
+      "payeeName": "Sahithi",
+      "price": 1000,
+      "date": "2023-02-25",
+      "id": 4
+    }
+  ]
+}
