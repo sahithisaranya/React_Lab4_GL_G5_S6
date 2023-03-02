@@ -2,29 +2,14 @@ import React from "react";
 import Table from 'react-bootstrap/Table';
 import IExpenseItem from "../models/expense";
 import {format} from "date-fns";
+import { type } from "os";
 
-
-const ExpenseItems = () => {
-
-    const defaultExpenseItems:IExpenseItem[]=[
-        {
-            "expenseDescription": "Bought Fridge",
-            "payeeName": "Sahithi",
-            "price": 15000,
-            "date": new Date(),
-            "id": 1
-        },
-        {
-            "expenseDescription": "Paid Internet Bill",
-            "payeeName": "Suchi",
-            "price": 2000,
-            "date": new Date(),
-            "id": 2
-        }
-    ]
-
+type ExpenseItemsModel={
+    expenseItems:IExpenseItem[]; 
+}
+const ExpenseItems = ({expenseItems}:ExpenseItemsModel) => {
     const convertDateAsString=(date:Date)=>{
-        return format(date,"yyyy-MM-dd");
+        return format(new Date(),"yyyy-MM-dd");
     }
    
     return (
@@ -40,7 +25,7 @@ const ExpenseItems = () => {
             </thead>
             <tbody>
                 {
-                    defaultExpenseItems.map((expenseItem: IExpenseItem,index) => {
+                    expenseItems.map((expenseItem: IExpenseItem,index) => {
                         return (
                             <tr>
                                 <td>{index+1}</td>
