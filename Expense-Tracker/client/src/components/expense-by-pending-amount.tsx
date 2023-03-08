@@ -4,21 +4,35 @@ import IExpenseItem from '../models/expense';
 import {getUniquePayeeNames,getGrandTotal,getTotalByPayee} from '../services/expense-utils';
 
 
-type ExpenseEachModel={
+type ExpenseByPendingAmountModel={
     expenseItems:IExpenseItem[];
 }
 
-const ExpenseEachSummary=({expenseItems}:ExpenseEachModel)=>{
+const ExpenseByPendingAmount=({expenseItems}:ExpenseByPendingAmountModel)=>{
 
     const uniquePayeeNames=getUniquePayeeNames(expenseItems);
+
+    const getPendingAmount=(payeeName:string)=>{
+        const totalExpenses=getGrandTotal(expenseItems);
+        const totalExpenseByPayee=getTotalByPayee(payeeName,expenseItems);
+
+        const halfAmount=totalExpenses/2;
+
+        if(totalExpenseByPayee>=halfAmount){
+            return 0;
+        }
+        else{
+            return (halfAmount-totalExpenseByPayee);
+        }
+    }
 
     return(
         <Table striped bordered hover>
         <thead>
             <tr>
                 <th>#</th>
-                <th>Payee Name</th>
-                <th>Total Contribution</th>
+                <th>Payee{`<=>`}Payee</th>
+                <th>Pending Amount</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +42,7 @@ const ExpenseEachSummary=({expenseItems}:ExpenseEachModel)=>{
                         <tr>
                             <td>{index+1}</td>
                             <td>{payeeName}</td>
-                           <td>{getTotalByPayee(payeeName,expenseItems)}</td>
+                           <td>{getPendingAmount(payeeName)}</td>
                         </tr>
                     )
                 })
@@ -43,4 +57,4 @@ const ExpenseEachSummary=({expenseItems}:ExpenseEachModel)=>{
         
     );
 }
-export default ExpenseEachSummary;
+export default ExpenseByPendingAmount;

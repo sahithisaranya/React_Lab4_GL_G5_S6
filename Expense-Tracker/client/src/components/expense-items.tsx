@@ -1,15 +1,13 @@
-import React from "react";
 import Table from 'react-bootstrap/Table';
 import IExpenseItem from "../models/expense";
-import {format} from "date-fns";
-import { type } from "os";
+import {format} from "date-fns"; 
 
 type ExpenseItemsModel={
     expenseItems:IExpenseItem[]; 
 }
 const ExpenseItems = ({expenseItems}:ExpenseItemsModel) => {
-    const convertDateAsString=(date:Date)=>{
-        return format(new Date(),"yyyy-MM-dd");
+    const convertDateAsString=(date:string)=>{
+        return format(new Date(date),"yyyy-MM-dd");
     }
    
     return (

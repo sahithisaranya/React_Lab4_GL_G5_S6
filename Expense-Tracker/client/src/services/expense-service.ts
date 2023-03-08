@@ -1,5 +1,5 @@
 import axios from "axios";
-import IExpenseItem from "../models/expense";
+import IExpenseItem, { IExpenseCreateItem } from "../models/expense";
 
 const GET_EXPENSE_ITEMS_URL="http://localhost:4000/items";
 const getAllExpenseItems=async()=>{
@@ -9,4 +9,15 @@ const getAllExpenseItems=async()=>{
     return response.data;
 }
 
+const POST_EXPENSE_ITEMS_URL="http://localhost:4000/items";
+const postExpenseItem=async(newExpenseItem:IExpenseCreateItem)=>{
+    const response=await axios.post<IExpenseItem>(POST_EXPENSE_ITEMS_URL,newExpenseItem,{
+        headers:{
+            'Content-Type':'application/json'
+        }
+    });
+    return response.data;
+}
+
+export {postExpenseItem};
 export {getAllExpenseItems};
